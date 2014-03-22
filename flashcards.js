@@ -5,14 +5,37 @@ function Card(frontString, backString)
 {
 	this.front = frontString;
 	this.back = backString;
-	this.last_reviewed = null;
+	this.lastReviewed = null;
+	this.interval = Card.INITIAL_INTERVAL;
+	this.efactor = Card.INITIAL_EFACTOR;
+};
+
+Card.prototype.INITIAL_INTERVAL = 1;
+Card.prototype.INITIAL_EFACTOR = 2.5;
+Card.prototype.MINIMUM_EFACTOR = 0.13;
+Card.prototype.EFACTOR_STEP = 0.15;
+
+Card.prototype.updateLastReviewed = function()
+{
+	this.lastReviewed = new Date();
+};
+
+Card.prototype.makeLazier = function()
+{
+	this.interval *= this.efactor;
+	this.efactor += Card.EFACTOR_STEP;
+};
+
+Card.prototype.makeEager = function()
+{
 	this.interval = 1;
-	this.efactor = 2.5;
+	this.efactor = Math.max(Card.MINIMUM_EFACTOR,
+	                        this.efactor - Card.EFACTOR_STEP);
 };
 
 Card.prototype.isLearning = function()
 {
-	return this.last_reviewed;
+	return this.lastReviewed;
 };
 
 Card.prototype.isNew = function()
@@ -22,7 +45,7 @@ Card.prototype.isNew = function()
 
 Card.prototye.isExpired = function()
 {
-	return !this.isNew() && new Date(this.last_reviewed.getTime() + 60000 * this.interval).getTime() < (new Date()).getTime();
+	return !this.isNew() && new Date(this.lastReviewed.getTime() + 60000 * this.interval).getTime() < (new Date()).getTime();
 };
 
 Card.prototype.display = function()
@@ -1581,4 +1604,14 @@ Session.prototype.nextCard = function()
 {
 	this.card = this.list.getRandom();
 	return this.card;
+};
+
+Session.prototype.rightAnswer = function()
+{
+	this.card.makeLazier();
+};
+
+Session.prototype.wrongAnswer = function()
+{
+	this.card.makeEager();
 };

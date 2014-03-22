@@ -10,3 +10,13 @@ function flip()
 {
 	session.currentCard().flipIn(document.getElementById('back'));
 }
+
+function right()
+{
+	session.rightAnswer();
+}
+
+function wrong()
+{
+	session.wrongAnswer();
+}
