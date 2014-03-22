@@ -10,10 +10,10 @@ function Card(frontString, backString)
 	this.efactor = Card.INITIAL_EFACTOR;
 };
 
-Card.prototype.INITIAL_INTERVAL = 1;
-Card.prototype.INITIAL_EFACTOR = 2.5;
-Card.prototype.MINIMUM_EFACTOR = 0.13;
-Card.prototype.EFACTOR_STEP = 0.15;
+Card.INITIAL_INTERVAL = 1;
+Card.INITIAL_EFACTOR = 2.5;
+Card.MINIMUM_EFACTOR = 0.13;
+Card.EFACTOR_STEP = 0.15;
 
 Card.prototype.updateLastReviewed = function()
 {
@@ -43,7 +43,7 @@ Card.prototype.isNew = function()
 	return !this.isLearning();
 };
 
-Card.prototye.isExpired = function()
+Card.prototype.isExpired = function()
 {
 	return !this.isNew() && new Date(this.lastReviewed.getTime() + 60000 * this.interval).getTime() < (new Date()).getTime();
 };
@@ -1587,6 +1587,18 @@ List.prototype.toCards = function()
     }
 };
 
+List.prototype.getBest = function()
+{
+	for (var i = 0; i < this.cards.length; i++)
+	{
+		if (this.cards[i].isExpired())
+		{
+			return this.cards[i];
+        }
+    }
+	return this.getRandom();
+};
+
 
 
 function Session(aList)
@@ -1602,16 +1614,18 @@ Session.prototype.currentCard = function()
 
 Session.prototype.nextCard = function()
 {
-	this.card = this.list.getRandom();
+	this.card = this.list.getBest();
 	return this.card;
 };
 
 Session.prototype.rightAnswer = function()
 {
+	this.card.updateLastReviewed();
 	this.card.makeLazier();
 };
 
 Session.prototype.wrongAnswer = function()
 {
+	this.card.updateLastReviewed();
 	this.card.makeEager();
 };
