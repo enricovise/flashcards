@@ -8,11 +8,10 @@
     <script>
     var list = new List();
     var card = null;
-    var i = 0;
 
     function next()
     {
-      card = list.get(i);
+      card = list.getRandom();
       document.getElementById('front').innerHTML = card.display();
       document.getElementById('back').innerHTML = "";
     }
@@ -20,7 +19,6 @@
     function flip()
     {
       document.getElementById('back').innerHTML = card.flip();
-      i++;
     }
 
     </script>

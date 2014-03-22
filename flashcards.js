@@ -1524,7 +1524,7 @@ List.prototype.get = function(anInteger)
 
 List.prototype.getRandom = function()
 {
-	return this.cards.get(Math.floor((Math.random()*this.cards.length)));
+	return this.get(Math.floor((Math.random()*this.cards.length)));
 };
 
 
