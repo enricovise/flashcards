@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <title>Flashcards</title>
+    <script src="flashcards.js"></script>
+  </header>
+  <body>
+    <script>
+    var list = new List();
+    var card = null;
+    var i = 0;
+
+    function next()
+    {
+      card = list.get(i);
+      document.getElementById('front').innerHTML = card.display();
+      document.getElementById('back').innerHTML = "";
+    }
+
+    function flip()
+    {
+      document.getElementById('back').innerHTML = card.flip();
+      i++;
+    }
+
+    </script>
+    <input type="button" value="Next" onclick="next();" />
+    <input type="button" value="Flip" onclick="flip();" />
+    <table>
+      <tr>
+        <th>Front:</th><td id="front"></td>
+      </tr>
+      <tr>
+        <th>Back:</th><td id="back"></td>
+      </tr>
+    </table>
+  </body>
+</html>
