@@ -5,9 +5,24 @@ function Card(frontString, backString)
 {
 	this.front = frontString;
 	this.back = backString;
-	this.last_reviewed = new Date();
+	this.last_reviewed = null;
 	this.interval = 1;
 	this.efactor = 2.5;
+};
+
+Card.prototype.isLearning = function()
+{
+	return this.last_reviewed;
+};
+
+Card.prototype.isNew = function()
+{
+	return !this.isLearning();
+};
+
+Card.prototye.isExpired = function()
+{
+	return !this.isNew() && new Date(this.last_reviewed.getTime() + 60000 * this.interval).getTime() < (new Date()).getTime();
 };
 
 Card.prototype.display = function()
