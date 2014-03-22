@@ -3,23 +3,9 @@
   <header>
     <title>Flashcards</title>
     <script src="flashcards.js"></script>
+    <script src="run_session.js"></script>
   </header>
   <body>
-    <script>
-    var session = new Session(new List());
-
-    function next()
-    {
-      session.nextCard().displayIn(document.getElementById('front'));
-      document.getElementById('back').innerHTML = "";
-    }
-
-    function flip()
-    {
-      session.currentCard().flipIn(document.getElementById('back'));
-    }
-
-    </script>
     <input type="button" value="Next" onclick="next();" />
     <input type="button" value="Flip" onclick="flip();" />
     <table>
