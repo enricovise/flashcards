@@ -28,7 +28,7 @@ Card.prototype.makeLazier = function()
 
 Card.prototype.makeEager = function()
 {
-	this.interval = 1;
+	this.interval = Card.INITIAL_INTERVAL;
 	this.efactor = Math.max(Card.MINIMUM_EFACTOR,
 	                        this.efactor - Card.EFACTOR_STEP);
 };
