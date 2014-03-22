@@ -1528,5 +1528,20 @@ List.prototype.getRandom = function()
 };
 
 
+function Session(aList)
+{
+	this.list = aList;
+	this.card = this.nextCard();
+}
 
+Session.prototype.currentCard = function()
+{
+	return this.card;
+};
+
+Session.prototype.nextCard = function()
+{
+	this.card = this.list.getRandom();
+	return this.card;
+};
 

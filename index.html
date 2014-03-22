@@ -6,19 +6,18 @@
   </header>
   <body>
     <script>
-    var list = new List();
-    var card = null;
+    var session = new Session(new List());
 
     function next()
     {
-      card = list.getRandom();
-      document.getElementById('front').innerHTML = card.display();
+
+      document.getElementById('front').innerHTML = session.nextCard().display();
       document.getElementById('back').innerHTML = "";
     }
 
     function flip()
     {
-      document.getElementById('back').innerHTML = card.flip();
+      document.getElementById('back').innerHTML = session.currentCard().flip();
     }
 
     </script>
