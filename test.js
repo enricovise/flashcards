@@ -1,11 +1,15 @@
 function display_returns_front(frontString, backString)
 {
-	var card = new Card(frontString, backString);
-	return card.display() == frontString;
+	return (new Card(frontString, backString)).display() == frontString;
 }
 
 function flip_returns_back(frontString, backString)
 {
-	var card = new Card(frontString, backString);
-	return card.flip() == backString;
+	return (new Card(frontString, backString)).flip() == backString;
+}
+
+function get_first_card()
+{
+	var card = (new List()).get(0);
+	return card.front == "Hello. (formal) " && card.back == "Salve. (sAH-lveh)";
 }
