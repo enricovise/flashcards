@@ -5,6 +5,9 @@ function Card(frontString, backString)
 {
 	this.front = frontString;
 	this.back = backString;
+	this.last_reviewed = new Date();
+	this.interval = 1;
+	this.efactor = 2.5;
 };
 
 Card.prototype.display = function()
@@ -1524,11 +1527,13 @@ function List() {
 				"back": "Posso semplicemente pagare una multa adesso? (POHS-soh sehm-plee-CHEH-mehn-teh pah-GAH-reh OO-nah MOOL-tah ah-DEHS-soh?)"
 			}
 		];
+	this.toCards();
 }
 
 List.prototype.get = function(anInteger)
 {
-	return new Card(this.cards[anInteger].front, this.cards[anInteger].back);
+	// return new Card(this.cards[anInteger].front, this.cards[anInteger].back);
+	return this.cards[anInteger];
 };
 
 List.prototype.getRandom = function()
@@ -1536,7 +1541,13 @@ List.prototype.getRandom = function()
 	return this.get(Math.floor((Math.random()*this.cards.length)));
 };
 
-
+List.prototype.toCards = function()
+{
+	for (var i = 0; i < this.cards.length; i++)
+	{
+		this.cards[i] = new Card(this.cards[i].front, this.cards[i].back);
+    }
+};
 
 
 
