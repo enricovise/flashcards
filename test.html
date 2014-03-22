@@ -19,12 +19,24 @@
         <th>get first card</th>
         <td id="get_first_card"></td>
       </tr>
+      <tr>
+        <th>displayIn fills in element innerHTML with the front</th>
+        <td id="displayIn_fills_in_element_innerHTML"></td>
+        <td id="displayIn_fills_in_element_innerHTML_test"</td>
+      </tr>
+      <tr>
+        <th>flipIn fills in element innerHTML with the back</th>
+        <td id="flipIn_fills_in_element_innerHTML"></td>
+        <td id="flipIn_fills_in_element_innerHTML_test"</td>
+      </tr>
     </table>
 
     <script>
-      document.getElementById('display_returns_front').innerHTML = display_returns_front("Hello", "Ciao");
-      document.getElementById('flip_returns_back').innerHTML = flip_returns_back("Hello", "Ciao");
-      document.getElementById('get_first_card').innerHTML = get_first_card();
+    document.getElementById('display_returns_front').innerHTML = display_returns_front("Hello", "Ciao");
+    document.getElementById('flip_returns_back').innerHTML = flip_returns_back("Hello", "Ciao");
+    document.getElementById('get_first_card').innerHTML = get_first_card();
+    document.getElementById('displayIn_fills_in_element_innerHTML').innerHTML = displayIn_fills_in_element_innerHTML("Hello", "Ciao", document.getElementById('displayIn_fills_in_element_innerHTML_test'));
+    document.getElementById('flipIn_fills_in_element_innerHTML').innerHTML = flipIn_fills_in_element_innerHTML("Hello", "Ciao", document.getElementById('flipIn_fills_in_element_innerHTML_test'));
     </script>
   </body>
 </html>
