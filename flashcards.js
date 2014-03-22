@@ -12,11 +12,20 @@ Card.prototype.display = function()
 	return this.front;
 };
 
+Card.prototype.displayIn = function(anElement)
+{
+	anElement.innerHTML = this.display();
+};
+
 Card.prototype.flip = function()
 {
 	return this.back;
 };
 
+Card.prototype.flipIn = function(anElement)
+{
+	anElement.innerHTML = this.flip();
+};
 
 
 
@@ -1528,6 +1537,9 @@ List.prototype.getRandom = function()
 };
 
 
+
+
+
 function Session(aList)
 {
 	this.list = aList;
@@ -1544,4 +1556,3 @@ Session.prototype.nextCard = function()
 	this.card = this.list.getRandom();
 	return this.card;
 };
-

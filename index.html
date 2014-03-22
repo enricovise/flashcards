@@ -10,14 +10,13 @@
 
     function next()
     {
-
-      document.getElementById('front').innerHTML = session.nextCard().display();
+      session.nextCard().displayIn(document.getElementById('front'));
       document.getElementById('back').innerHTML = "";
     }
 
     function flip()
     {
-      document.getElementById('back').innerHTML = session.currentCard().flip();
+      session.currentCard().flipIn(document.getElementById('back'));
     }
 
     </script>
